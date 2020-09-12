@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <UserSecretsId>dotnet-DiscordBot.EntryPoint-DFACDB34-6772-4188-BB5B-E2A38F958764</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Discord.Net" Version="2.2.0" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.8" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DiscordBot.BotCommands\DiscordBot.BotCommands.csproj" />
+    </ItemGroup>
+</Project>

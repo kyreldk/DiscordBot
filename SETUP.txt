@@ -1,0 +1,10 @@
+- Copy appsettings.json.dist and appsettings.Development.json.dist (by removing the "dist") and add your API Key. 
+  Make sure files with your API Keys remain gitignored.
+
+- Switch into the directory DiscordBot.Entrypoint
+- Execute dotnet run
+
+Development Requirements:
+
+- SQLite
+- dotnet core SDK 3.1 LTS or higher

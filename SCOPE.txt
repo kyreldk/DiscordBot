@@ -1,0 +1,24 @@
+Must:
+
+    - Work within Fortune Favoured
+    - Run on Ubuntu 20.04 LTS without runtime requirement for .NET Core
+    - Not have hard dependencies on further services outside of a single command level, except for Discord itself
+    - Be deployable to Azure
+    - Command failures may not stop the bot
+    - Command results may not trigger an additional command
+    
+Should: 
+
+    - Be able to be tested on testing-servers for development
+    
+May: 
+
+    - Hardcode role-names and user IDs for permissions
+    - Hardcode channel-names or IDs for command purposes & scopes
+
+May not: 
+
+    - Hardcode role-IDs for permissions
+    - Hardcode user-names for permissions
+    - Commit passwords, connection strings or secrets to git
+    
