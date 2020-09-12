@@ -5,6 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\DiscordBot.DataAccess\DiscordBot.DataAccess.csproj" />
       <ProjectReference Include="..\DiscordBot.StaticValues\DiscordBot.StaticValues.csproj" />
     </ItemGroup>
 

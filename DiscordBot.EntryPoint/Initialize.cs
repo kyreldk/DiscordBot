@@ -1,10 +1,11 @@
 ﻿using Discord;
 using Discord.WebSocket;
 using DiscordBot.BotCommands;
-using DiscordBot.BotCommands.Commands;
 using DiscordBot.BotCommands.Commands.Ping;
 using DiscordBot.BotCommands.Commands.Purge;
+using DiscordBot.DataAccess;
 using DiscordBot.EntryPoint.CommandExecution;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -12,6 +13,14 @@ namespace DiscordBot.EntryPoint
 {
     public class Initialize
     {
+        public static void InitializeDatabase(HostBuilderContext hostContext, IServiceCollection services)
+        {
+            services.AddDbContext<BotDbContext>(options =>
+            {
+                options.UseSqlite(hostContext.Configuration["ConnectionString"]);
+            });
+        }
+        
         public static void InitializeDiscordClient(HostBuilderContext hostContext, IServiceCollection services)
         {
             var discordClient = new DiscordSocketClient();

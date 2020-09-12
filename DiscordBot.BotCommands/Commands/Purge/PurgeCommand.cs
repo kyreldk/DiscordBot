@@ -22,6 +22,13 @@ namespace DiscordBot.BotCommands.Commands.Purge
         public async Task Execute(SocketMessage message)
         {
             var amount = int.Parse(message.Content.Replace("*purge ", "").Trim());
+
+            if (amount > 50)
+            {
+                await message.Channel.SendMessageAsync("Can not purge more than 50 messages");
+                return;
+            }
+            
             var messages = await message.Channel.GetMessagesAsync((int) amount + 1).FlattenAsync();
             
             foreach (var messageToDelete in messages)

@@ -40,3 +40,7 @@ msbuild.wrn
 
 DiscordBot.EntryPoint/appsettings.json
 DiscordBot.EntryPoint/appsettings.Development.json
+
+# the sqlite db - path may vary depending on execution directory (solution or project level)
+discordbot.db
+*/discordbot.db 

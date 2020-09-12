@@ -8,3 +8,13 @@ Development Requirements:
 
 - SQLite
 - dotnet core SDK 3.1 LTS or higher
+
+
+this is currently using EF Core tool previews and is therefore a bit tricky to set up. Install the appropriate ef core preview 
+or use the pregenerated database.
+
+Create the database by executing this in the dataaccess project: 
+
+    dotnet ef database update --startup-project ..\DiscordBot.EntryPoint\
+
+Or copy the "discordbot.db.dist" to "discordbot.db" which always contains the newest clean schema.

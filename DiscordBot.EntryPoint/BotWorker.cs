@@ -1,7 +1,6 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Discord;
 using Discord.WebSocket;
 using DiscordBot.EntryPoint.CommandExecution;
 using Microsoft.Extensions.Hosting;

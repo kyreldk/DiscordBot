@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using Discord.WebSocket;
 using Microsoft.Extensions.Logging;
 using ICommand = DiscordBot.BotCommands.ICommand;
