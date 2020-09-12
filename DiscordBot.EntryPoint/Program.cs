@@ -14,7 +14,7 @@ namespace DiscordBot.EntryPoint
                 .ConfigureServices((hostContext, services) =>
                 {
                     Initialize.InitializeDiscordClient(hostContext, services);
-
+                    Initialize.InitializeDatabase(hostContext, services);
                     Initialize.RegisterServices(hostContext, services);
                     Initialize.RegisterWorker(hostContext, services);
                 });

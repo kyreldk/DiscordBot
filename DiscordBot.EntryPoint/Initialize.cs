@@ -2,6 +2,7 @@
 using Discord.WebSocket;
 using DiscordBot.BotCommands;
 using DiscordBot.BotCommands.Commands.Ping;
+using DiscordBot.BotCommands.Commands.Poll;
 using DiscordBot.BotCommands.Commands.Purge;
 using DiscordBot.DataAccess;
 using DiscordBot.EntryPoint.CommandExecution;
@@ -34,9 +35,12 @@ namespace DiscordBot.EntryPoint
         public static void RegisterServices(HostBuilderContext hostContext, IServiceCollection services)
         {
             services.AddSingleton<ICommandHandler, CommandHandler>();
+
+            services.AddSingleton<IPollRepository, PollRepository>();
             
             services.AddSingleton<ICommand, PingCommand>();
             services.AddSingleton<ICommand, PurgeCommand>();
+            services.AddSingleton<ICommand, PollCommand>();
         }
 
         public static void RegisterWorker(HostBuilderContext hostContext, IServiceCollection services)
