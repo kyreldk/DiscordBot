@@ -4,7 +4,7 @@ using Discord;
 using Discord.WebSocket;
 using DiscordBot.StaticValues;
 
-namespace DiscordBot.BotCommands.Commands
+namespace DiscordBot.BotCommands.Commands.Purge
 {
     public class PurgeCommand: ICommand
     {

@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Discord.WebSocket;
 
-namespace DiscordBot.BotCommands.Commands
+namespace DiscordBot.BotCommands.Commands.Ping
 {
-    public class TestCommand: ICommand
+    public class PingCommand: ICommand
     {
         public bool CanExecute(SocketMessage message)
         {
