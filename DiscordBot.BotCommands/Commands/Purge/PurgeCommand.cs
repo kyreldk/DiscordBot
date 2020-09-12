@@ -15,8 +15,8 @@ namespace DiscordBot.BotCommands.Commands.Purge
 
             var userRoles = ((SocketGuildUser) message.Author).Roles;
 
-            return message.Author.Id == UserIds.UserId_Kyrel ||
-                   userRoles.Any(sr => sr.Name == RoleNames.Rolename_Caretaker);
+            return message.Author.Id == UserIds.Kyrel ||
+                   userRoles.Any(sr => sr.Name == RoleNames.Caretaker);
         }
 
         public async Task Execute(SocketMessage message)

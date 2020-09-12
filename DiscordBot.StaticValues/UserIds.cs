@@ -2,6 +2,6 @@
 {
     public class UserIds
     {
-        public static ulong UserId_Kyrel = 554066687289327616;
+        public static ulong Kyrel = 554066687289327616;
     }
 }

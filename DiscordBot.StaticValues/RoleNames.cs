@@ -2,7 +2,7 @@
 {
     public class RoleNames
     {
-        public static string Rolename_Caretaker = "Caretaker";
-        public static string Rolename_Favoured = "Favoured";
+        public static string Caretaker = "Caretaker";
+        public static string Favoured = "Favoured";
     }
 }
