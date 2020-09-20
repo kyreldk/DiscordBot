@@ -4,9 +4,9 @@ using DiscordBot.BotCommands;
 using DiscordBot.BotCommands.Commands.Ping;
 using DiscordBot.BotCommands.Commands.Poll;
 using DiscordBot.BotCommands.Commands.Purge;
+using DiscordBot.BotCommands.Commands.Statistics;
 using DiscordBot.DataAccess;
 using DiscordBot.EntryPoint.CommandExecution;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -16,10 +16,8 @@ namespace DiscordBot.EntryPoint
     {
         public static void InitializeDatabase(HostBuilderContext hostContext, IServiceCollection services)
         {
-            services.AddDbContext<BotDbContext>(options =>
-            {
-                options.UseSqlite(hostContext.Configuration["ConnectionString"]);
-            });
+            var contextFactory = new BotDbContextFactory(hostContext.Configuration["ConnectionString"]);
+            services.AddSingleton<IBotDbContextFactory>(contextFactory);
         }
         
         public static void InitializeDiscordClient(HostBuilderContext hostContext, IServiceCollection services)
@@ -28,19 +26,20 @@ namespace DiscordBot.EntryPoint
             
             discordClient.LoginAsync(TokenType.Bot, hostContext.Configuration["DiscordApiKey"]).GetAwaiter().GetResult();
             discordClient.StartAsync().GetAwaiter().GetResult();
-            
-            services.AddSingleton(discordClient);
 
+            services.AddSingleton(discordClient);
         }
         public static void RegisterServices(HostBuilderContext hostContext, IServiceCollection services)
         {
             services.AddSingleton<ICommandHandler, CommandHandler>();
-
-            services.AddSingleton<IPollRepository, PollRepository>();
             
+            services.AddSingleton<IPollRepository, PollRepository>();
+
+            services.AddSingleton<ICommand, StatisticsGeneratorCommand>();
             services.AddSingleton<ICommand, PingCommand>();
-            services.AddSingleton<ICommand, PurgeCommand>();
             services.AddSingleton<ICommand, PollCommand>();
+            services.AddSingleton<ICommand, PurgeCommand>();
+            services.AddSingleton<ICommand, StatisticsCommand>();
         }
 
         public static void RegisterWorker(HostBuilderContext hostContext, IServiceCollection services)

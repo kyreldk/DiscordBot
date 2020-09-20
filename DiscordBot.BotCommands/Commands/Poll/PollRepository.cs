@@ -11,28 +11,30 @@ namespace DiscordBot.BotCommands.Commands.Poll
 
     public class PollRepository : IPollRepository
     {
-        private readonly BotDbContext _dbContext;
+        private readonly IBotDbContextFactory _dbContextFactory;
 
-        public PollRepository(BotDbContext dbContext)
+        public PollRepository(IBotDbContextFactory dbContextFactory)
         {
-            _dbContext = dbContext;
+            _dbContextFactory = dbContextFactory;
         }
 
         public void RegisterMessageAsPoll(ulong messageId)
         {
+            using var dbContext = _dbContextFactory.Create();
             var poll = new DataAccess.Entities.Poll
             {
                 MessageId = messageId,
                 CreateDate = DateTime.Now,
             };
 
-            _dbContext.Add(poll);
-            _dbContext.SaveChanges();
+            dbContext.Add(poll);
+            dbContext.SaveChanges();
         }
 
         public bool IsMessagePoll(ulong messageId)
         {
-            return _dbContext.Polls.FirstOrDefault(e => e.MessageId == messageId) != null;
+            using var dbContext = _dbContextFactory.Create();
+            return dbContext.Polls.FirstOrDefault(e => e.MessageId == messageId) != null;
         }
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Discord;
 using Discord.WebSocket;
 using DiscordBot.EntryPoint.CommandExecution;
 using Microsoft.Extensions.Hosting;
@@ -26,6 +27,24 @@ namespace DiscordBot.EntryPoint
             while (!stoppingToken.IsCancellationRequested)
             {
                 _discordClient.MessageReceived += _commandHandler.OnMessage;
+
+                _discordClient.Ready += () =>
+                {
+                    try
+                    {
+                        var channel =
+                            _discordClient.GetGuild(685492295386398780).GetChannel(757206506566320128) as
+                                IMessageChannel;
+                        channel.SendMessageAsync($"Successful redeploy on Azure {DateTime.Now.ToLongTimeString()}")
+                            .GetAwaiter().GetResult();
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+
+                    return null;
+                };
                 
                 _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
                 

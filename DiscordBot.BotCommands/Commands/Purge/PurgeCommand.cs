@@ -10,8 +10,8 @@ namespace DiscordBot.BotCommands.Commands.Purge
     {
         public bool CanExecute(SocketMessage message)
         {
-            if (!message.Content.StartsWith("*purge")) return false;
-            if (!int.TryParse(message.Content.Replace("*purge ", "").Trim(), out _)) return false;
+            if (!message.Content.StartsWith("!!purge")) return false;
+            if (!int.TryParse(message.Content.Replace("!!purge ", "").Trim(), out _)) return false;
 
             var userRoles = ((SocketGuildUser) message.Author).Roles;
 
@@ -21,7 +21,7 @@ namespace DiscordBot.BotCommands.Commands.Purge
 
         public async Task Execute(SocketMessage message)
         {
-            var amount = int.Parse(message.Content.Replace("*purge ", "").Trim());
+            var amount = int.Parse(message.Content.Replace("!!purge ", "").Trim());
 
             if (amount > 50)
             {
@@ -30,11 +30,8 @@ namespace DiscordBot.BotCommands.Commands.Purge
             }
             
             var messages = await message.Channel.GetMessagesAsync((int) amount + 1).FlattenAsync();
-            
-            foreach (var messageToDelete in messages)
-            {
-                await message.Channel.DeleteMessageAsync(messageToDelete);
-            }
+
+            await ((ITextChannel) message.Channel).DeleteMessagesAsync(messages);
         }
     }
 }

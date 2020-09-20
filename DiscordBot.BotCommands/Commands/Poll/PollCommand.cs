@@ -32,12 +32,12 @@ namespace DiscordBot.BotCommands.Commands.Poll
 
         public bool CanExecute(SocketMessage message)
         {
-            return message.Content.StartsWith("*poll");
+            return message.Content.StartsWith("!!poll");
         }
 
         public async Task Execute(SocketMessage message)
         {
-            var messageContent = message.Content.Replace("*poll", "");
+            var messageContent = message.Content.Replace("!!poll", "");
             
             var pollOptions = CreatePollOptions(messageContent);
             var pollQuestion = GetPollQuestion(messageContent);
