@@ -5,6 +5,7 @@ using DiscordBot.BotCommands.Commands.Ping;
 using DiscordBot.BotCommands.Commands.Poll;
 using DiscordBot.BotCommands.Commands.Purge;
 using DiscordBot.BotCommands.Commands.Statistics;
+using DiscordBot.BotCommands.Commands.Hug;
 using DiscordBot.DataAccess;
 using DiscordBot.EntryPoint.CommandExecution;
 using Microsoft.Extensions.DependencyInjection;
@@ -40,6 +41,7 @@ namespace DiscordBot.EntryPoint
             services.AddSingleton<ICommand, PollCommand>();
             services.AddSingleton<ICommand, PurgeCommand>();
             services.AddSingleton<ICommand, StatisticsCommand>();
+            services.AddSingleton<ICommand, HugCommand>();
         }
 
         public static void RegisterWorker(HostBuilderContext hostContext, IServiceCollection services)
